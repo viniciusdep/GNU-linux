@@ -1,0 +1,64 @@
+1 – Descreva resumidamente a função dos comandos abaixo:
+grep =  Pesquisa em arquivos ou em sua entrada padrão por uma sequência de
+caracteres informada.
+wc = O comando “wc” (acrônimo de “word count”) realiza a contagem da quantidade de
+linhas, palavras ou caracteres de um determinado arquivo ou entrada padrão
+sort = Ordena em ordem alfabetica
+cut =  Exibe partes/seções de cada linha de um determinado arquivo ou
+entrada padrão
+tar =  Permite dois tipos de tarefas, empacotar e desempacotar arquivos
+
+2 – Qual o comando para listar em ordem alfabética o conteúdo do arquivo “”?
+$ cat /etc/group | sort
+
+3 – Utilizando o comando da questão anterior, concatene um novo comando (na mesma linha) que realiza a
+contagem da quantidade de linhas do conteúdo gerado pelo primeiro comando.
+$ cat wc /etc/group | sort
+
+
+4 – Através do comando “cut", filtre a saída do comando “ls -l /”, de forma que seja exibido apenas as permissões,
+data e nome dos diretórios listados.
+$ ls -l / | cut -d: -f 1,7
+
+5 – Modifique a linha de comando da questão anterior de forma que sejam exibidas apenas as permissões, usuário e
+grupo proprietários de cada diretório, e o nome do diretório.
+$ ls -l / | cut -d: -f 1,4,7
+
+6 – Através do comando “grep”, filtre a saída do comando “ls -l /proc”, exibindo os arquivos/diretórios que não
+possuem o usuário e grupo “root” como proprietário.
+$ ls -l /proc | grep root
+
+7 – Acesse o seu diretório pessoal e compacte apenas o conteúdo do seu diretório pessoal para um arquivo chamado
+”seu_nome.tar.gz” (o arquivo “seu_nome.tar.gz” deverá ficar no diretório pessoal. Ex.: “/root/guilherme.tar.gz”).
+$ sudo tar czf vini.tar.gz viniciusdep/
+
+8 – Liste o conteúdo do arquivo “seu_nome.tar.gz” e o conteúdo do seu diretório pessoal e verifique se ambos
+mostram a mesma quantidade de arquivos.
+$ /home$ ls viniciusdep/ | wc
+     10      10      83
+viniciusdep@ubuntu20:/home$ ls vini.tar.gz | wc
+      1       1      12
+Obs.: Nao esperei a compactacao terminar
+
+9 – Compacte o diretório "/etc" e todo o seu conteúdo em um novo arquivo de nome "backup-etc.tar.xxx" com os
+compactadores GZIP e BZIP2 (onde "xxx" será alterado de acordo com o compactador utilizado):
+Comando para compactar com o GZIP = sudo tar czf bkp-etc.tar.gz /etc/
+Comando para compactar com o BZIP2 = sudo tar cjf bkp-etc.tar.gz /etc/
+
+10 – Copie os arquivos gerados para o diretório pessoal do usuário "root".
+$ sudo cp viniciusdep/ /home
+
+11 – Execute o comando "ls -lh /root", onde será possível visualizar o tamanho de cada um dos arquivos gerados na
+questão 9. Observe qual comando realizou uma compressão mais eficiente.
+$ ls -lh /home
+total 1,3G
+-rw-r--r--  1 root        root        1,5M jul  3 11:59 bkp-etc.tar.bz2
+-rw-r--r--  1 root        root        1,5M jul  3 11:59 bkp-etc.tar.gz
+
+12 – Crie um diretório com o nome “restore-gzip/” dentro do seu diretório pessoal e descompacte o conteúdo do
+arquivo “tar” compactado com o compactador GZIP na questão 9 dentro deste diretório (/root/restore-gzip/).
+$ sudo tar xzf bkp-etc.tar.gz
+
+13 – Crie um diretório com o nome “restore-bzip/” dentro do seu diretório pessoal e descompacte o conteúdo do
+arquivo “tar” compactado com o compactador BZIP2 na questão 9 dentro deste diretório (/root/restore-bzip/).
+$ sudo tar xjf bkp-etc.tar.bz2 

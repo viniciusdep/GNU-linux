@@ -1,0 +1,120 @@
+01 – Observe a imagem a seguir e explique o que representa (significa) cada uma das partes (no contexto) do Shell
+BASH (interpretador de comandos) do GNU/Linux:
+Imagem: [root@localhost var]#
+
+root: Usuario logado
+localhost: Nome do copmputador
+var: Diretorio atual
+#: A cerquilha significa que o usuario root esta logado
+
+02 – Qual a função dos seguintes diretórios:
+
+ /bin = Contém os programas/comandos básicos do sistema para uso dos usuários.
+ /boot = Contém arquivos necessários para a inicialização do sistema.
+ /etc = Arquivos de configuração do sistema e de serviços de rede (pacotes) instalados (por padrão).
+ /home = Diretório que contém os subdiretórios de cada usuário (análogo ao “Users” ou o antigo “Documents and Settings”).
+ /lib = Bibliotecas compartilhadas pelos programas do sistema e módulos do kernel.
+ /proc = stema de arquivos do kernel. Este diretório não existe em seu disco rígido, ele é criado pelo kernel e usado por
+diversos programas que fazem sua leitura. Através de seu conteúdo podemos verificar configurações do sistema ou
+modificar o funcionamento de dispositivos através de alterações em seus arquivos (como a função de roteamento).
+ /usr = Contém arquivos e aplicativos de usuários do sistema, “documentações” do sistema, entre outros tipos de arquivo.
+ /var = Contém os logs do sistema e dados de spool de impressora e cache.
+ /sbin = Contém os programas/comandos acessíveis pelo super usuário (root) para administração do sistema.
+
+ 03 – O que significa o símbolo ~ dentro do sistema operacional Linux?
+ O caractere til ~ é um alias associado do diretório home do usuário
+
+ 04 – Que característica tem os arquivos que se iniciam com ponto dentro do sistema GNU/Linux? 
+ No Linux arquivos e pastas que começam com . (ponto) no inicio do nome, são pastas ou arquivos ocultos
+
+ 05 – Qual o comando utilizado para navegar entre os diretórios?
+ $ cd
+
+ 06 – Qual é o atalho para:
+    Limpar a tela = (control + l) ou (clear)
+    Alternar do modo gráfico para texto = CTRL+ALT+F1* ao F6
+    Alternar do modo texto para gráfico = Alt+F7
+    Alternar entre as janelas texto = ALT + F1 ao F6 (terminais modo texto) ou (ALT + F7* (terminal gráfico) 
+    Mostrar historico de comandos anteriores) = history
+
+07 – Qual a informação exibida por cada uma das 7 colunas do comando “ls –l”?
+
+Exemplo:
+
+rwxr-xr-x 22 viniciusdep viniciusdep 4096 jul  2 15:38 .
+drwxr-xr-x  4 root        root        4096 jun 18 00:22 ..
+-rw-------  1 viniciusdep viniciusdep 2811 jul  2 16:36 .bash_history
+-rw-r--r--  1 viniciusdep viniciusdep  220 jun 17 23:43 .bash_logout
+-rw-r--r--  1 viniciusdep viniciusdep 3771 jun 17 23:43 .bashrc
+
+Primeira coluna  Tipo de arquivo e permissões do arquivo.
+• O primeiro caractere determina o tipo do “objeto”:
+• “d” = Diretório;
+• “–” = Arquivo comum;
+• “l” = Link (podemos “compará-lo” ao atalho do ambiente Windows);
+• “b” = Dispositivo de blocos, ou seja, HD, CD-ROM, Pen Drive, entre outros.
+• Os demais caracteres nos mostram as permissões de acesso ao arquivo, sendo:
+• “r” = Leitura (read);
+• “w” = Escrita (write);
+• “x” = Execução (eXecute);
+
+Segunda coluna  Total de inodes para o arquivo/objeto.
+• OBS.: Caso seja um arquivo comum, teremos sempre o número 1. Porém, podemos verificar que
+nos diretórios, este número terá variações, tendo em vista que ele realiza a contagem de
+quantos subdiretórios existem dentro do diretório listado.
+
+• Terceira coluna  Usuário proprietário do arquivo.
+
+• Quarta coluna  Grupo proprietário do arquivo.
+
+Quinta coluna  Tamanho do arquivo.
+• Observe que no print temos alguns arquivos com o tamanho descrito em KB e outros em MB. O
+parâmetro “-h” (human-readable) do “ls” possibilita esta visualização.
+
+Sexta coluna  Temos informações sobre a data de modificação do arquivo.
+• OBS.: Em algumas distribuições temos variações nesta coluna, em relação ao formato
+“data/hora” ou na quantidade de informações exibidas.
+
+• Sétima coluna  O nome do arquivo ou diretório.
+
+08 – Com uma única linha de comando, crie a seguinte estrutura de diretórios dentro do seu diretório pessoal:
+continente/pais/estado/cidade/bairro/rua/
+$ mkdir -p  continente/pais/estado/cidade/bairro/rua
+
+09 – Altere a estrutura da questão 08 para: planeta/continente/pais/regiao/estado/cidade/bairro/rua/
+$ 
+
+10 – Explique a função e diferenças dos seguintes comandos (crie arquivos e diretórios em sua VM para testar):
+a. rm: Remove arquivos
+b. rm –r: Remove diretorios com arquivos dentro
+c. rmdir: Remove diretorios vazios
+
+11 – Com o comando “rmdir” apague os diretórios cidade/bairro/rua/
+$ cd continente/pais/estado/ && rmdir cidade/bairro/rua
+
+12 – Dentro do diretório de configurações do sistema Linux, encontre os seguintes arquivos e copie-os para o
+diretório “pais”. 
+a) fstab: cp /etc/fstab continente/pais/
+b) group: cp /etc/group continente/pais/
+c) hosts: cp /etc/hosts continente/pais/
+
+13 – Conceitue link simbólico e link hard.
+Simbólico = Um symlink (também chamado de link simbólico) é um tipo de arquivo no Linux que aponta para outro arquivo ou diretório em seu computador. Os symlinks são semelhantes aos atalhos no Windows. Alguns chamam os symlinks de "soft links" 
+Hard = Um hard link é um ponteiro para o inode de um arquivo ou diretório. Ao deletar o arquivo original ou o hard link, o outro ainda existe (porque o inode é mantido).
+
+14 – Crie um link simbólico para o arquivo “/etc/fstab” dentro do seu diretório pessoal com o nome de “mounts.link”.
+$ ln -s /etc/fstab mounts.link
+
+15 – Explique a função dos seguintes comandos (preferencialmente testando em uma VM):
+pwd = Mostra onde estamos localizados no sistema
+tree = Mostra construcao/organizacao de diretorios de forma visual
+mv = Usado para mover ou renomear arquivos
+cal = Mostra calendario do mes atuaL
+cd ~ = Volta para diretorio home do usuario logado
+
+16 - Crie um novo arquivo com o nome “teste” através do comando “touch” dentro do diretório pessoal do usuário
+“root”. Posteriormente, mova este arquivo para o diretório “/var”, alterando o nome para “teste.var”.
+$ sudo su - 
+$ touch teste
+$ ls
+$ mv teste /var/teste.var

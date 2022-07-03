@@ -1,0 +1,85 @@
+1 – Execute o comando a seguir e descreva o resultado:
+mkdir -p {teste,docs/{listas,rh,pub},slides/{Linux,Windows}}
+tree
+.
+├── docs
+│   ├── listas
+│   ├── pub
+│   └── rh
+├── slides
+│   ├── Linux
+│   └── Windows
+└── teste
+
+2 – Utilizando o mesmo contexto/sintaxe da questão 1, crie a seguinte estrutura de diretórios no Linux com apenas
+um comando:
+$ mkdir -p udemy/{linux/{atividades,slides},redes/{atividades,slides},servidores/{atividades,slides}}
+~/udemy$ tree
+.
+├── linux
+│   ├── atividades
+│   └── slides
+├── redes
+│   ├── atividades
+│   └── slides
+└── servidores
+    ├── atividades
+    └── slides
+
+3 – O que significa o parâmetro “-r” no comando “cp”? Porque é uma boa pratica usá-lo?
+Significa recursivo, usando-o garantimos que os dermais arquivos dentro do diretorio, tambem serao copiados para o destino. 
+
+4 – Crie a seguinte estrutura de diretórios dentro do seu diretório pessoal: ~/atividade/sistema/linux/
+$ mkdir atividade/sistema/linux
+
+5 – Encontre os arquivos listados abaixo dentro de algum diretório do sistema Linux e copie-os para dentro do seu
+diretório ~/atividade/sistema/
+fstab: /etc/fstab
+resolv.conf: /etc/resolv.conf
+passwd: /usr/bin/passwd
+shadow: /etc/shadow
+group: /etc/group
+inittab: /etc/inittab
+Para copiar os arquivos: cp -r <local_do_aquivo_a_ser_copiado> ~/atividade/sistema
+
+6 – Altere a estrutura de diretórios da questão 04 para a seguinte:
+~/atividade/pratica/sistema/operacional/linux
+
+7 – Faça uma pesquisa na Internet e responda a finalidade de cada um dos arquivos listados na questão 05:
+/etc/fstab: Armazena a configuração de quais dispositivos devem ser montados e qual o ponto de montagem de cada um na carga do sistema operacional, mesmo dispositivos locais e remotos.
+/etc/resolv.conf:
+/etc/passwd: Responsável por buscar o servidor DNS para resolver nomes na rede.
+/etc/shadow: Armazenar as senhas criptografadas das contas dos usuários. O sistema gshadow consiste no uso do arquivo /etc/gshadow para armazenar as senhas criptografadas dos grupos do sistema.
+/etc/group: Define os grupos aos quais os usuários pertencem em sistemas UNIX, como o Linux e o BSD. Usamos os grupos para configurar permissões de acesso a arquivos e pastas aos usuários do sistema, além de configurar o acesso a discos e impressoras.
+/etc/inittab: E o responsável por definir o nível de execução (runlevel) que o Linux vai iniciar e a sequência de scripts que serão executados para inicializar os serviços.
+
+
+8 – Apague o diretório de nome “operacional” e todo o seu conteúdo, criado na questão 06.
+
+9 – Altere o nome do diretório “pratica” criado na questão 06 para “teste” (mantendo a estrutura de subdiretórios
+existente).
+
+10 – Os comandos “cat”, “more” e “less” são comando de visualização de conteúdo. Quais as diferenças entre eles?
+cat: Exibe na saída padrão (tela) o conteúdo de um arquivo.
+more: Exibe na saída padrão (tela) o conteúdo de um arquivo, exibindo uma tela de cada vez (ideal para arquivos extensos).
+less: Exibe na saída padrão (tela) o conteúdo de um arquivo, permitindo a paginação através de comandos.
+
+11 – Vamos supor que você deseja executar um programa que levará muito tempo para ser executado e que sua
+saída é muito extensa. Como podemos redirecionar toda a saída deste comando para um arquivo com o nome
+“log.txt”?
+(OBS.: Vamos supor que o comando se chama “app.sh”).
+$ app.sh > log.txt
+
+12 – No mesmo contexto da questão anterior, qual a linha de comando que deveria ser utilizada caso seja necessário
+separar as mensagens de erro das mensagens de sucesso?
+(O erro deve ser armazenado em “erro.log” e as mensagens de “sucesso” em “ok.log”).
+$ app.sh 2>> erro.log & app.log > ok.log
+
+13 – (Concatenação) – Descreva qual a finalidade do comando a seguir:
+cat /etc/passwd | grep "bin/false" | cut -d ":" -f 1
+No comando acima estamos executando uma busca em /etc/passwd e verificando as tentativas de acesso a pastas que o usuario nao tem permissao
+/bin/false significa que o usuario nao teve permissao para efetuar login ou acesso. 
+
+14 – Cite um exemplo de concatenação de comandos e justifique a finalidade.
+Podemos realizar contatenacao de comando shell com ";" ou contatenacao de comandos simples no terminal usando o "&"
+Seus usos podem variar de automatizar acoes ate mesmo deixar as saidas mais human readable. 
